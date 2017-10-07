@@ -29,6 +29,7 @@ from keeper.api.util import bytes_to_hexstring, hexstring_to_bytes
 from eth_abi.encoding import get_single_encoder
 from eth_utils import coerce_return_to_text, encode_hex
 from web3 import Web3
+from decimal import Decimal
 
 from keeper.api.token import ERC20Token
 
@@ -71,9 +72,9 @@ class OffChainOrder(Order):
     def from_json(data: dict):
         assert(isinstance(data, dict))
         return OffChainOrder(token_get=Address(data['tokenGet']),
-                             amount_get=Wad(int(data['amountGet'])),
+                             amount_get=Wad(Decimal(data['amountGet'])),
                              token_give=Address(data['tokenGive']),
-                             amount_give=Wad(int(data['amountGive'])),
+                             amount_give=Wad(Decimal(data['amountGive'])),
                              expires=int(data['expires']),
                              nonce=int(data['nonce']),
                              v=int(data['v']),

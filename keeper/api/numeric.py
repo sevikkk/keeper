@@ -50,6 +50,9 @@ class Wad:
         elif isinstance(value, int):
             # assert(value >= 0)
             self.value = value
+        elif isinstance(value, Decimal):
+            # assert(value >= 0)
+            self.value = int(value)
         else:
             raise ArithmeticError
 
